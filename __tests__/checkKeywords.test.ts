@@ -76,4 +76,60 @@ describe("checkKeywords", () => {
       },
     ]);
   });
+
+  it("matches if keyword is katakana", () => {
+    const result = checkKeywords(
+      [{ keywords: ["テスト"], labels: ["test"], assignees: ["Naturalclar"] }],
+      " テスト "
+    );
+    expect(result).toEqual([
+      {
+        keywords: ["テスト"],
+        labels: ["test"],
+        assignees: ["Naturalclar"],
+      },
+    ]);
+  });  
+
+  it("matches if keyword is hiragana", () => {
+    const result = checkKeywords(
+      [{ keywords: ["てすと"], labels: ["test"], assignees: ["Naturalclar"] }],
+      " てすと "
+    );
+    expect(result).toEqual([
+      {
+        keywords: ["てすと"],
+        labels: ["test"],
+        assignees: ["Naturalclar"],
+      },
+    ]);
+  });
+
+  it("matches if keyword is kangi", () => {
+    const result = checkKeywords(
+      [{ keywords: ["試験"], labels: ["test"], assignees: ["Naturalclar"] }],
+      " 試験 "
+    );
+    expect(result).toEqual([
+      {
+        keywords: ["試験"],
+        labels: ["test"],
+        assignees: ["Naturalclar"],
+      },
+    ]);
+  });
+
+  it("matches if keyword is mixed japanese", () => {
+    const result = checkKeywords(
+      [{ keywords: ["試験"], labels: ["test"], assignees: ["Naturalclar"] }],
+      "テスト試験てすと"
+    );
+    expect(result).toEqual([
+      {
+        keywords: ["試験"],
+        labels: ["test"],
+        assignees: ["Naturalclar"],
+      },
+    ]);
+  });
 });

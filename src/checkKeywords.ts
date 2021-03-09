@@ -10,6 +10,11 @@ export const checkKeywords = (
     return obj.keywords.forEach(keyword => {
       if (RegExp(`(?!-)\\b${keyword.toLowerCase()}\\b(?!-)`, 'g').test(content.toLowerCase())) {
         matchingKeywords.push(obj);
+      } else {
+        let japanese = /\p{sc=Hiragana}|\p{sc=Katakana}|\p{sc=Han}/u;
+        if ((japanese.test(keyword) || japanese.test(content)) && content.includes(keyword)) {
+          matchingKeywords.push(obj);
+        }
       }
     })
   })
