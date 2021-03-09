@@ -12,7 +12,7 @@ export const checkKeywords = (
         matchingKeywords.push(obj);
       } else {
         let japanese = /\p{sc=Hiragana}|\p{sc=Katakana}|\p{sc=Han}/u;
-        if ((japanese.test(keyword) || japanese.test(content)) && content.includes(keyword)) {
+        if ((japanese.test(keyword) || japanese.test(content)) && content.toLowerCase().includes(keyword.toLowerCase())) {
           matchingKeywords.push(obj);
         }
       }

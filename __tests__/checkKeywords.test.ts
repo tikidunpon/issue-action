@@ -132,4 +132,18 @@ describe("checkKeywords", () => {
       },
     ]);
   });
+
+  it("matches if keyword is mixed japanese", () => {
+    const result = checkKeywords(
+      [{ keywords: ["Test試験"], labels: ["test"], assignees: ["Naturalclar"] }],
+      "test試験"
+    );
+    expect(result).toEqual([
+      {
+        keywords: ["Test試験"],
+        labels: ["test"],
+        assignees: ["Naturalclar"],
+      },
+    ]);
+  });
 });
